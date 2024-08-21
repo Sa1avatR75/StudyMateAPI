@@ -7,13 +7,13 @@ import io.restassured.response.Response;
 
 public class StudyMateToken {
     public static String getToken(){
-        String endPoint = Config.getProperty("studyMateAPIURL") + "/api/myaccount/auth/login";
+        String endPoint = Config.getProperty("studyMateAPIURL") + "/api/auth/authenticate";
 
         RequestBody requestBody = new RequestBody();
         requestBody.setEmail("sa.amingaliev@gmaiil.com");
         requestBody.setPassword("220300Sa");
 
         Response response = RestAssured.given().contentType(ContentType.JSON).body(requestBody).post(endPoint);
-        return response.jsonPath().getString("jwt_token");
+        return response.jsonPath().getString("token");
     }
 }
